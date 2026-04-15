@@ -1,0 +1,37 @@
+# 仓库创建测试数据
+create_repo_tests:
+  - name: "valid-repo-1"
+    description: "正常创建测试"
+    private: false
+    expected_status: 201
+    
+  - name: "valid-repo-2"
+    description: "另一个正常仓库"
+    private: true
+    expected_status: 201
+    
+  - name: ""
+    description: "空名称应失败"
+    private: false
+    expected_status: 422
+    
+  - name: "a" * 101
+    description: "超长名称应失败"
+    private: false
+    expected_status: 422
+    
+  - name: "test@#$"
+    description: "特殊字符应失败"
+    private: false
+    expected_status: 422
+
+# 用户搜索测试数据
+search_tests:
+  - query: "pytest"
+    expected_min_count: 1000
+    
+  - query: "selenium"
+    expected_min_count: 1000
+    
+  - query: "docker"
+    expected_min_count: 10000

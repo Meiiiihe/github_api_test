@@ -55,6 +55,9 @@ class TestGitHubRepoAPI:
         # 先创建一个仓库
         github_api.create_repo(unique_repo_name)
         
+        # 等待1秒，让GitHub API同步
+        time.sleep(1)
+        
         # 获取仓库信息
         response = github_api.get_repo(unique_repo_name)
         assert response.status_code == 200

@@ -3,12 +3,17 @@ import pytest
 import time
 from api.github_api import GitHubAPI
 
+import os
+from config.config import Config
+
 class TestGitHubUserAdvanced:
     """用户相关高级测试"""
     
     def setup_method(self):
-        self.api = GitHubAPI()
-    
+        # 确保 Token 被正确设置
+        if not Config.TOKEN:
+            print("⚠️ 警告：未设置 GITHUB_TOKEN 环境变量")
+        self.api = GitHubAPI()    
     # ========== 用户信息测试 (10个) ==========
     def test_get_user_octocat(self):
         """测试获取octocat用户"""
