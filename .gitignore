@@ -1,0 +1,30 @@
+# 虚拟环境
+venv/
+env/
+ENV/
+
+# Python缓存
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.tox/
+.coverage
+
+# 测试报告
+allure-results/
+allure-report/
+*.html
+*.xml
+
+# 配置文件（包含敏感信息）
+config/config_local.py
+*.local.py
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# 日志
+*.log
