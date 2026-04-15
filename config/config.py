@@ -1,17 +1,29 @@
-# config/config.py
 import os
 
-class Config:
-    # 从环境变量读取Token（更安全）
-    TOKEN = os.getenv("GITHUB_TOKEN", "")
-    
-    # GitHub API配置
-    BASE_URL = "https://api.github.com"
-    HEADERS = {
+TOKEN = os.getenv("GITHUB_TOKEN", "")
+USERNAME = os.getenv("GITHUB_USERNAME", "Meiiiihe")
+BASE_URL = "https://api.github.com"
+USER_AGENT = "Python-Pytest-Test"
+
+
+def get_headers() -> dict:
+    return {
         "Authorization": f"token {TOKEN}",
         "Accept": "application/vnd.github.v3+json",
-        "User-Agent": "Python-Pytest-Test"
+        "User-Agent": USER_AGENT,
     }
-    
-    # 你的GitHub用户名
-    USERNAME = "Meiiiihe"
+
+
+class Config:
+    TOKEN = TOKEN
+    USERNAME = USERNAME
+    BASE_URL = BASE_URL
+    USER_AGENT = USER_AGENT
+
+    @classmethod
+    def get_headers(cls) -> dict:
+        return {
+            "Authorization": f"token {cls.TOKEN}",
+            "Accept": "application/vnd.github.v3+json",
+            "User-Agent": cls.USER_AGENT,
+        }
